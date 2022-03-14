@@ -1,26 +1,16 @@
-## User Flask API & SQL Alchemy
+## Infrastructure as Code with AWS Cloud Formation
 
 
-## Quick Start 
+## Deploying stacks
 
-``` bash
-# Create & Activate venv
-$ python3 -m venv venv
-$ . venv/bin/activate
+``` 
+./create.sh stackname filename.yml filename.json
 ```
-## Install dependencies
-```bash
-$ pip3 install -r requirments.txt
-```
-## Create DB
-```python
-$ python3
->> from app import db
->> exit()
-```
-## Run Server (http://127.0.0.1:5000/)
-```bash
+Replace the filename with the filestack you create example:
 
-python app.py
 ```
+./create.sh ourdemoservers servers.yml server-parameters.json
+```
+
+
 
