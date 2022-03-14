@@ -14,3 +14,7 @@ Replace the filename with the filestack you create example:
 
 
 
+##To create s3 bucket via the template you run command
+```
+./create.sh bucketstack bucket.yml 
+```
