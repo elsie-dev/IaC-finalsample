@@ -1,0 +1,14 @@
+[
+	{
+		"ParameterKey": "EnvironmentName",
+		"ParameterValue": "BlogProject"
+	},
+	{
+		"ParameterKey": "myUsername",
+		"ParameterValue": "csye6225"
+	},
+	{
+		"ParameterKey": "myPassword",
+		"ParameterValue": "Qwerty#0"
+	}
+]

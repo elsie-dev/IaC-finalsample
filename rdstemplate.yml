@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  EnvironmentName:
+    Description: An environment name that will be prefixed to resource names
+    Type: String
+  myUsername:
+    Description: username given in the project outline
+    Type: String
+  myPassword:
+    Description: A password with at least 8 characters
+    Type: String
+Resources:
+
+  myDBSubnetGroup11:
+    Type: "AWS::RDS::DBSubnetGroup"
+    Properties:
+      DBSubnetGroupDescription: "Subnets to use for the DB"
+      DBSubnetGroupName: "Subnet Group"
+
+      SubnetIds:
+       - Fn::ImportValue:
+          !Sub "${EnvironmentName}-PrivateSubnet1"
+          # subnet-04d37c6bd4bbfc706
+       - Fn::ImportValue:
+          !Sub "${EnvironmentName}-PrivateSubnet2"
+          # subnet-06c4c8ae7c74529e1
+       - Fn::ImportValue:
+        !Sub "${EnvironmentName}-PrivateSubnet3"
+          #subnet-09c494f0e4f07d36b
+
+
+  MyDB:
+    Type: "AWS::RDS::DBInstance"
+    Properties:
+
+      VPCSecurityGroups:
+        - !Ref WebserverSecGroup
+      PubliclyAccessible: false
+      MultiAZ: false
+      AllocatedStorage: 20
+      DBInstanceClass: db.t2.small
+      Engine: "mysql"
+      MasterUsername: !Sub "${myUsername}"
+      MasterUserPassword: !Sub "${myPassword}"
+      DBSubnetGroupName: !Ref myDBSubnetGroup11
+      Tags:
+        -
+          Key: "Name"
+          Value: !Sub "${EnvironmentName} MS SQL RDS"
+    DeletionPolicy: "Retain"
